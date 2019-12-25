@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "thy-vis-client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,8 @@
     "core-js": "^3.4.3",
     "echarts": "^4.5.0",
     "lodash": "^4.17.15",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-resource": "^1.5.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",

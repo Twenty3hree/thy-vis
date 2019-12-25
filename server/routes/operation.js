@@ -4,15 +4,14 @@ let MysqlPool = require('./mysql_pool');
 let mysqlPool = new MysqlPool();
 let pool = mysqlPool.getPool();
 module.exports = {
-    query: function (req, res, next) {
+    query: function (sql, res) {
         pool.getConnection(function(err, connection) {
             if (err) throw err;
-            connection.query(req.query.sql, function(err, result) {
+            connection.query(sql, function(err, result) {
                 if(err){
                     console.log(err);
-                    res.send(err)
                 }
-                res.send(result);
+                res(result);
                 connection.release();
             });
         });

@@ -1,58 +1,53 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" style="height:20px;">
-    <br>
-    <div id="graph-1" style="width: 33%;height:300px;float:left"></div>
-    <div id="graph-2" style="width: 33%;height:300px;float:left"></div>
-    <div id="graph-3" style="width: 33%;height:300px;float:left"></div>
-    <div id="graph-4" style="width: 100%;height:500px;margin-top:50px;float:left"></div>
-    <!-- <h1>{{info}}</h1> -->
+    <img alt="Vue logo" src="./assets/logo.png" style="height:20px;" />
+    <br />
+    <Graph1 :date="this.date" style="width: 33%;height:300px;float:left" />
+    <Graph2 :date="this.date" style="width: 33%;height:300px;float:left" />
+    <Graph3 :date="this.date" style="width: 33%;height:300px;float:left" />
+    <Graph4 :date="this.date" style="width: 100%;height:500px;margin-top:50px;float:left" />
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import echarts from 'echarts'
-import _ from 'lodash'
-import drawGraph1 from './utils/drawGraph1'
-import drawGraph2 from './utils/drawGraph2'
-import drawGraph3 from './utils/drawGraph3'
-import drawGraph4 from './utils/drawGraph4'
+// import axios from 'axios'
+import echarts from "echarts";
+// import _ from 'lodash'
+import Graph1 from "./components/Graph1";
+import Graph2 from "./components/Graph2";
+import Graph3 from "./components/Graph3";
+import Graph4 from "./components/Graph4";
 
 export default {
-  name: 'app',
+  name: "app",
   data() {
     return {
-      info:"",
-      major_list: [],
-      m: []
-    }
+      date: "10月1日"
+    };
+  },
+  components: {
+    Graph1,
+    Graph2,
+    Graph3,
+    Graph4
   },
   mounted() {
-    let sql = `select * from data1`
-    axios.get(`/api/query?sql=${sql}`)
-    .then(response => (
-        this.info = response.data
-    ))
-    drawGraph1(document.getElementById('graph-1'))
-    drawGraph2(document.getElementById('graph-2'))
-    drawGraph3(document.getElementById('graph-3'))
-    drawGraph4(document.getElementById('graph-4'))
-
+    this.$http.get(`graph1`).then(response => {
+      this.info = response.data;
+    });
   },
   watch: {
-      info: function (val) {
-        this.major_list = _.mapValues(val, 'Address')
-        this.m = _.countBy(this.major_list)
-      }
+    // date: function (val) {
+    //   this.major_list = _.mapValues(val, 'Address')
+    //   this.m = _.countBy(this.major_list)
+    // }
   }
-
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

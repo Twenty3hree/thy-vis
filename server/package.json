@@ -1,5 +1,5 @@
 {
-  "name": "lesson1",
+  "name": "thy-vis-server",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -16,6 +16,7 @@
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
+    "cors": "^2.8.5",
     "nodemon": "^2.0.2"
   }
 }
