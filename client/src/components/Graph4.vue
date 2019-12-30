@@ -9,7 +9,7 @@ import _ from "lodash";
 export default {
   name: "Graph4",
   props: {
-    date: ""
+    data: ""
   },
   data() {
     return {
@@ -18,9 +18,9 @@ export default {
   },
   mounted() {
     this.drawGraph(this.$refs.graph);
-    this.$http.get(`graph4`).then(response => {
-      this.sqlData = response.data;
-    });
+    // this.$http.get(`graph4`).then(response => {
+    //   this.sqlData = response.data;
+    // });
   },
   methods: {
     drawGraph(el) {
@@ -139,7 +139,7 @@ export default {
             type: "line",
             smooth: true,
             symbol: "circle",
-            symbolSize: 5,
+            symbolSize: 15,
             sampling: "average",
             itemStyle: {
               normal: {
@@ -147,20 +147,20 @@ export default {
               }
             },
             stack: "a",
-            areaStyle: {
-              normal: {
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  {
-                    offset: 0,
-                    color: "#8ec6ad"
-                  },
-                  {
-                    offset: 1,
-                    color: "#ffe"
-                  }
-                ])
-              }
-            },
+            // areaStyle: {
+            //   normal: {
+            //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            //       {
+            //         offset: 0,
+            //         color: "#8ec6ad"
+            //       },
+            //       {
+            //         offset: 1,
+            //         color: "#ffe"
+            //       }
+            //     ])
+            //   }
+            // },
             data: data
           },
           {
@@ -169,27 +169,27 @@ export default {
             smooth: true,
             stack: "a",
             symbol: "circle",
-            symbolSize: 20,
+            symbolSize: 15,
             sampling: "average",
             itemStyle: {
               normal: {
                 color: "#d68262"
               }
             },
-            areaStyle: {
-              normal: {
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  {
-                    offset: 0,
-                    color: "#d68262"
-                  },
-                  {
-                    offset: 1,
-                    color: "#ffe"
-                  }
-                ])
-              }
-            },
+            // areaStyle: {
+            //   normal: {
+            //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            //       {
+            //         offset: 0,
+            //         color: "#342324"
+            //       },
+            //       {
+            //         offset: 1,
+            //         color: "#f22"
+            //       }
+            //     ])
+            //   }
+            // },
             data: data2
           }
         ]

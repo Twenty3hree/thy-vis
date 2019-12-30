@@ -9,7 +9,7 @@ import _ from "lodash";
 export default {
   name: "Graph2",
   props: {
-    date: ""
+    data: ""
   },
   data() {
     return {
@@ -18,9 +18,9 @@ export default {
   },
   mounted() {
     this.drawGraph(this.$refs.graph);
-    this.$http.get(`graph2`).then(response => {
-      this.sqlData = response.data;
-    });
+    // this.$http.get(`graph2`).then(response => {
+    //   this.sqlData = response.data;
+    // });
   },
   methods: {
     drawGraph(el) {
