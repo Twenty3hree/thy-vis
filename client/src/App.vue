@@ -7,9 +7,9 @@
     <button @click="week='week4'">Week4</button>
     <button @click="week='week5'">Week5</button>
     <br />
-    <Graph1 :data="this.data" style="width: 33%;height:300px;float:left" />
-    <Graph2 :data="this.data" style="width: 33%;height:300px;float:left" />
-    <Graph3 :data="this.data" style="width: 33%;height:300px;float:left" />
+    <Graph1 :data="this.data" style="width: 50%;height:300px;float:left" />
+    <Graph2 :data="this.data" style="width: 50%;height:300px;float:left" />
+    <Graph3 :data="this.data" style="width: 50%;height:300px;float:left" />
     <Graph4 :data="this.data" style="width: 100%;height:500px;margin-top:50px;float:left" />
   </div>
 </template>
@@ -27,8 +27,9 @@ export default {
   name: "app",
   data() {
     return {
-      week: 'week1',
-      data: ''
+      week: 'week5',
+      data: '',
+      stuData: '',
     };
   },
   components: {
@@ -39,8 +40,24 @@ export default {
   },
   methods: {
     getData: function(week) {
-        this.$http.get(`${week}`).then(response => {
+      this.$http.get(`${week}`).then(response => {
         this.data = response.data;
+        // this.data = _.forEach(response.data,function(obj) {
+        //   let time = new Date(obj.Date)
+        //   let day = time.getDate()
+        //   let timeInDay
+        //   if(time.getHours()<10)
+        //       timeInDay = day + 'breakfast'
+        //   else if(time.getHours()<15)
+        //       timeInDay = day + 'lunch'
+        //   else if(time.getHours()<24)
+        //       timeInDay = day + 'dinner'
+        //   obj.day = day
+        //   obj.timeInDay = timeInDay
+        // })
+      });
+      this.$http.get(`student`).then(response => {
+        this.stuData = response.data;
       });
     }
   },
