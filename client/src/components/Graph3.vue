@@ -59,7 +59,7 @@ export default {
       // 指定图表的配置项和数据
       let option = {
         title:{
-          text:"就餐人数",
+          text:"各食堂就餐人数",
           x:"center",
           y: 'top',
           textStyle: {
@@ -97,7 +97,10 @@ export default {
               triggerEvent: true,
               splitArea: {
                   show: true
-              }
+              },
+            axisTick:{
+              show:false
+            }
           },
           visualMap: {
               min: 0,
@@ -138,6 +141,9 @@ export default {
           if(params.componentType =="yAxis")
             self.$emit('updateDept', params.value)
       });
+      window.onresize = function(){
+        myChart.resize();
+      }
     }
   },
   watch: {
