@@ -7,10 +7,10 @@
     <button @click="week='week4'">Week4</button>
     <button @click="week='week5'">Week5</button>
     <br />
-    <Graph1 :data="this.data" style="width: 50%;height:300px;float:left" />
-    <Graph2 :data="this.data" style="width: 50%;height:300px;float:left" />
+    <Graph1 :data="this.data" style="width: 33%;height:300px;float:left" />
     <Graph3 :data="this.data" style="width: 50%;height:300px;float:left" />
-    <Graph4 :data="this.data" style="width: 100%;height:500px;margin-top:50px;float:left" />
+    <Graph2 :data="this.data" style="width: 33%;height:300px;float:left" />
+    <Graph4 :data="this.data" style="width: 50%;height:500px;float:left" />
   </div>
 </template>
 
