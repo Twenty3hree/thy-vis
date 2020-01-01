@@ -122,12 +122,12 @@ export default {
               source: source[week]
           },
           xAxis: [
-              {type: 'category', gridIndex: 0},
-              {type: 'category', gridIndex: 1}
+              {type: 'category', gridIndex: 0,axisTick:{show:false}},
+              {type: 'category', gridIndex: 1,axisTick:{show:false}}
           ],
           yAxis: [
-              {gridIndex: 0},
-              {gridIndex: 1}
+              {gridIndex: 0,axisTick:{show:false},axisLabel:{margin:5}},
+              {gridIndex: 1,axisTick:{show:false},axisLabel:{margin:5}}
           ],
           grid: [
               {bottom: '55%'},
