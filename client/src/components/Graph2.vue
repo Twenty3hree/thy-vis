@@ -11,7 +11,8 @@ export default {
   props: {
     data: "",
     //将最终的数据存在source中
-    source:""
+    week: "",
+    dept: ""
   },
   data() {
     return {
@@ -19,7 +20,7 @@ export default {
     };
   },
   mounted() {
-    this.drawGraph(this.$refs.graph);
+    // this.drawGraph(this.$refs.graph);
       // this.$http.get(`graph2`).then(response => {
     //   this.sqlData = response.data;
     // });
@@ -28,39 +29,89 @@ export default {
   watch: {
     data: function(newValue, oldValue) {
       const self = this
-      self.data = newValue
-      // debugger
-      this.source = self.process(self.data)
-      // this.d = self.process(self.data)
-    }
-
+      self.drawGraph(self.$refs.graph);
+    },
+    dept: function(newValue, oldValue) {
+      const self = this
+      self.drawGraph(self.$refs.graph);
+    },
   },
   methods: {
-    process: function(data) {
-      let s = [];
-      let data_Dept = _.groupBy(data,'Dept');
-      let depts = _.keys(data_Dept);
-      //提取日期
-      let days = _.keys(_.groupBy(_.groupBy(data,'Dept')['第一食堂'], 'day'));
-      //插入第一个关键字后为数组1
-      days = days.splice(0,0,'Deps');
-      let data_Dept_days1 = _.groupBy(data_Dept.第一食堂,'day')
-      let data_Dept_days2 = _.groupBy(data_Dept.第二食堂,'day')
-      let data_Dept_days3 = _.groupBy(data_Dept.第三食堂,'day')
-      let data_Dept_days4 = _.groupBy(data_Dept.第四食堂,'day')
-      let data_Dept_days5 = _.groupBy(data_Dept.第五食堂,'day')
-      let data_Dept_days6 = _.groupBy(data_Dept.好利来食品店,'day')
-      let data_Dept_days7 = _.groupBy(data_Dept.红太阳超市,'day')
-
-    },
     drawGraph(el) {
+      const self = this
       // Graph 2
       let myChart = echarts.init(el);
+
+      let week = self.week
+      let dept = self.dept
+
+      let data = {
+        'week1': {
+          '一食堂':[{name:'男',type:'line',data:[0.11, 0.08, 0.11, 0.11, 0.71, 0.69, 0.44]},
+                   {name:'女',type:'line',data:[0.1, 0.09, 0.08, 0.1, 0.64, 0.55, 0.3]   }],
+          '二食堂':[{name:'男',type:'line',data:[0.21, 0.22, 0.27, 0.23, 0.29, 0.31, 0.1] },
+                   {name:'女',type:'line',data:[0.25, 0.22, 0.25, 0.21, 0.36, 0.45, 0.12]}],
+          '三食堂':[{name:'男',type:'line',data:[0.15, 0.16, 0.14, 0.15, 0, 0, 0.26]      },
+                   {name:'女',type:'line',data:[0.15, 0.15, 0.14, 0.14, 0, 0, 0.37]      }],
+          '四食堂':[{name:'男',type:'line',data:[0.35, 0.38, 0.3, 0.36, 0, 0, 0.15]       },
+                   {name:'女',type:'line',data:[0.19, 0.23, 0.18, 0.25, 0, 0, 0.06]      }],
+          '五食堂':[{name:'男',type:'line',data:[0.18, 0.16, 0.18, 0.15, 0, 0, 0.05]      },
+                   {name:'女',type:'line',data:[0.31, 0.31, 0.34, 0.29, 0, 0, 0.15]      }]
+        },
+        'week2':{
+          '一食堂':[{name:'男',type:'line',data:[0.09, 0.08, 0.11, 0.1, 0.06, 0.07, 0.06]  },
+                   {name:'女',type:'line',data:[0.06, 0.09, 0.09, 0.08, 0.06, 0.07, 0.06] }],
+          '二食堂':[{name:'男',type:'line',data:[0.24, 0.22, 0.25, 0.23, 0.32, 0.34, 0.29] },
+                   {name:'女',type:'line',data:[0.27, 0.21, 0.25, 0.23, 0.27, 0.28, 0.23] }],
+          '三食堂':[{name:'男',type:'line',data:[0.15, 0.12, 0.15, 0.16, 0.15, 0.11, 0.13] },
+                   {name:'女',type:'line',data:[0.15, 0.16, 0.18, 0.16, 0.16, 0.15, 0.17] }],
+          '四食堂':[{name:'男',type:'line',data:[0.34, 0.39, 0.33, 0.35, 0.32, 0.31, 0.34] },
+                   {name:'女',type:'line',data:[0.21, 0.22, 0.2, 0.24, 0.2, 0.16, 0.19]   }],
+          '五食堂':[{name:'男',type:'line',data:[0.17, 0.18, 0.16, 0.16, 0.16, 0.18, 0.18] },
+                   {name:'女',type:'line',data:[0.31, 0.32, 0.32, 0.3, 0.3, 0.34, 0.34]   }]
+        },
+        'week3':{
+          '一食堂':[{name:'男',type:'line',data:[0.08, 0.08, 0.08, 0.08, 0.07, 0.05, 0.08]},
+                   {name:'女',type:'line',data:[0.09, 0.08, 0.07, 0.09, 0.05, 0.04, 0.06]}],
+          '二食堂':[{name:'男',type:'line',data:[0.24, 0.26, 0.33, 0.23, 0.33, 0.3, 0.31] },
+                   {name:'女',type:'line',data:[0.22, 0.25, 0.33, 0.22, 0.29, 0.27, 0.23]}],
+          '三食堂':[{name:'男',type:'line',data:[0.14, 0.13, 0.11, 0.14, 0.16, 0.11, 0.13]},
+                   {name:'女',type:'line',data:[0.15, 0.17, 0.17, 0.17, 0.17, 0.19, 0.21]}],
+          '四食堂':[{name:'男',type:'line',data:[0.36, 0.35, 0.29, 0.38, 0.29, 0.35, 0.34]},
+                   {name:'女',type:'line',data:[0.23, 0.2, 0.15, 0.25, 0.18, 0.18, 0.17] }],
+          '五食堂':[{name:'男',type:'line',data:[0.18, 0.18, 0.19, 0.17, 0.15, 0.19, 0.14]},
+                   {name:'女',type:'line',data:[0.31, 0.31, 0.35, 0.28, 0.31, 0.32, 0.32]}]
+        },
+        'week4':{
+          '一食堂':[{name:'男',type:'line',data:[0.07, 0.09, 0.07, 0.07, 0.07, 0.79, 0]},
+                   {name:'女',type:'line',data:[0.08, 0.09, 0.09, 0.07, 0.05, 0.56, 0]}],
+          '二食堂':[{name:'男',type:'line',data:[0.3, 0.27, 0.31, 0.26, 0.33, 0.21, 0] },
+                   {name:'女',type:'line',data:[0.27, 0.23, 0.25, 0.24, 0.31, 0.44, 0]}],
+          '三食堂':[{name:'男',type:'line',data:[0.15, 0.14, 0.14, 0.17, 0.12, 0, 0]   },
+                   {name:'女',type:'line',data:[0.17, 0.18, 0.17, 0.18, 0.17, 0, 0]   }],
+          '四食堂':[{name:'男',type:'line',data:[0.31, 0.35, 0.33, 0.36, 0.32, 0, 0]   },
+                   {name:'女',type:'line',data:[0.17, 0.22, 0.21, 0.22, 0.19, 0, 0]   }],
+          '五食堂':[{name:'男',type:'line',data:[0.17, 0.15, 0.14, 0.14, 0.16, 0, 0]   },
+                   {name:'女',type:'line',data:[0.31, 0.28, 0.31, 0.29, 0.28, 0, 0]   }]
+        },
+        'week5':{
+          '一食堂':[{name:'男',type:'line',data:[0.09, 0.08]},
+                   {name:'女',type:'line',data:[0.07, 0.09]}],
+          '二食堂':[{name:'男',type:'line',data:[0.33, 0.26]},
+                   {name:'女',type:'line',data:[0.28, 0.24]}],
+          '三食堂':[{name:'男',type:'line',data:[0.14, 0.14]},
+                   {name:'女',type:'line',data:[0.17, 0.19]}],
+          '四食堂':[{name:'男',type:'line',data:[0.28, 0.36]},
+                   {name:'女',type:'line',data:[0.17, 0.18]}],
+          '五食堂':[{name:'男',type:'line',data:[0.16, 0.16]},
+                   {name:'女',type:'line',data:[0.31, 0.3]}]
+        },
+      }
 
       // 指定图表的配置项和数据
       let option = {
           title: {
-              text: '折线图堆叠'
+              text: dept + '男女分别到场比例'
           },
           tooltip: {
               trigger: 'axis'
@@ -81,49 +132,19 @@ export default {
           },
           xAxis: {
               type: 'category',
-              boundaryGap: false,
               data: ['周一','周二','周三','周四','周五','周六','周日']
           },
           yAxis: {
               type: 'value'
           },
-          series: [
-              {
-                  name:'邮件营销',
-                  type:'line',
-                  stack: '总量',
-                  data:[120, 132, 101, 134, 90, 230, 210]
-              },
-              {
-                  name:'联盟广告',
-                  type:'line',
-                  stack: '总量',
-                  data:[220, 182, 191, 234, 290, 330, 310]
-              },
-              {
-                  name:'视频广告',
-                  type:'line',
-                  stack: '总量',
-                  data:[150, 232, 201, 154, 190, 330, 410]
-              },
-              {
-                  name:'直接访问',
-                  type:'line',
-                  stack: '总量',
-                  data:[320, 332, 301, 334, 390, 330, 320]
-              },
-              {
-                  name:'搜索引擎',
-                  type:'line',
-                  stack: '总量',
-                  data:[820, 932, 901, 934, 1290, 1330, 1320]
-              }
-          ]
+          series: data[week][dept]
       };
-
 
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
+      window.onresize = function(){
+        myChart.resize();
+      }
     }
   }
 };

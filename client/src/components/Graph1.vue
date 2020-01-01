@@ -142,6 +142,17 @@ export default {
             timeInDay = 'dinner'
         object.day = day
         object.expendId = object.CardNo + timeInDay + day
+        // object.dayId = object.CardNo + day
+        // if(object.Dept=='第一食堂')
+        //   object.d = 1
+        // if(object.Dept=='第二食堂')
+        //   object.d = 2
+        // if(object.Dept=='第三食堂')
+        //   object.d = 3
+        // if(object.Dept=='第四食堂')
+        //   object.d = 4
+        // if(object.Dept=='第五食堂')
+        //   object.d = 5
       })
 
       self.maleObj = {}

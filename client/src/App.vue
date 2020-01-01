@@ -28,7 +28,7 @@
     <br />
     <!-- <Graph1 :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" /> -->
     <!-- <Graph3 v-on:updateDept="updateDept" :dept="this.dept" :data="this.data" :week="this.week" style="width: 50%;height:300px;float:left" /> -->
-    <Graph2 :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" />
+    <Graph2 :dept="this.dept" :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" />
     <Graph4 :data="this.data" :week="this.week" style="width: 50%;height:500px;float:left" />
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
       week: 'week5',
       data: '',
       stuData: '',
-      dept: '',
+      dept: '一食堂',
     };
   },
   components: {
