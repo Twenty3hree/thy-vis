@@ -111,13 +111,21 @@ export default {
       // 指定图表的配置项和数据
       let option = {
           title: {
-              text: dept + '男女分别到场比例'
+            text: dept + '男女就餐比例',
+            x:"center",
+            y: 'top',
+            textStyle: {
+              fontSize: 14,
+              color: '#747779'
+            }
           },
           tooltip: {
               trigger: 'axis'
           },
           legend: {
-              data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+              data:['男','女'],
+              x: "center",
+              top: 25
           },
           grid: {
               left: '3%',
@@ -125,20 +133,22 @@ export default {
               bottom: '3%',
               containLabel: true
           },
-          toolbox: {
-              feature: {
-                  saveAsImage: {}
-              }
-          },
           xAxis: {
               type: 'category',
-              data: ['周一','周二','周三','周四','周五','周六','周日']
+              data: ['周一','周二','周三','周四','周五','周六','周日'],
+              axisTick:{
+                show:false
+              }
           },
           yAxis: {
               type: 'value',
-              max: 1,
-              interval: 0.2
+              max: 0.8,
+              interval: 0.2,
+              axisTick:{
+                show:false
+              }
           },
+        color:['#70A8A8','#D53A35'],
           series: data[week][dept]
       };
 
