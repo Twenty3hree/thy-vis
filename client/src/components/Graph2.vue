@@ -135,7 +135,9 @@ export default {
               data: ['周一','周二','周三','周四','周五','周六','周日']
           },
           yAxis: {
-              type: 'value'
+              type: 'value',
+              max: 1,
+              interval: 0.2
           },
           series: data[week][dept]
       };
