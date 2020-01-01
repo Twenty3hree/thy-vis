@@ -2,7 +2,7 @@
   <div id="app" class="app">
     <div id="top">
       <div id="top_1">
-        <Graph1 :data="this.data" style="width: 100%;height:300px" />
+        <Graph1 :data="this.data" :week="this.week" style="width: 100%;height:300px" />
       </div>
       <div id="top_2">
           <div class="topTit">一卡通数据可视分析系统</div>
@@ -11,7 +11,7 @@
           <button @click="week='week3'">3rd week</button>
           <button @click="week='week4'">4th week</button>
           <button @click="week='week5'">5th week</button>
-        <Graph3 :data="this.data" style="width: 100%;height:300px;margin-top:1% " />
+        <Graph3 :data="this.data" :week="this.week" style="width: 100%;height:300px;margin-top:1% " />
       </div>
       <div id="top_3"></div>
     </div>
@@ -26,8 +26,8 @@
     <br />
 <!--    <Graph1 :data="this.data" style="width: 33%;height:300px;float:left" />-->
 <!--    <Graph3 :data="this.data" style="width: 50%;height:300px;float:left" />-->
-    <Graph2 :data="this.data" style="width: 33%;height:300px;float:left" />
-    <Graph4 :data="this.data" style="width: 50%;height:500px;float:left" />
+    <Graph2 :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" />
+    <Graph4 :data="this.data" :week="this.week" style="width: 50%;height:500px;float:left" />
   </div>
 </template>
 
