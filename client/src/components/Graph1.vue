@@ -191,7 +191,6 @@ export default {
       })
       self.drawGraph(self.$refs.graph);
     }
-    
   },
 };
 </script>
