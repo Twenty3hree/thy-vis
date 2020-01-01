@@ -84,6 +84,9 @@ export default {
                     fontSize:10,
                     color:"#000"
                   }
+                },
+                axisTick:{
+                  show:false
                 }
               }
           ],
