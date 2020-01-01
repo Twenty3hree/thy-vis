@@ -9,7 +9,9 @@ import _ from "lodash";
 export default {
   name: "Graph2",
   props: {
-    data: ""
+    data: "",
+    //将最终的数据存在source中
+    source:""
   },
   data() {
     return {
@@ -18,11 +20,39 @@ export default {
   },
   mounted() {
     this.drawGraph(this.$refs.graph);
-    // this.$http.get(`graph2`).then(response => {
+      // this.$http.get(`graph2`).then(response => {
     //   this.sqlData = response.data;
     // });
   },
+
+  watch: {
+    data: function(newValue, oldValue) {
+      const self = this
+      self.data = newValue
+      // debugger
+      this.source = self.process(self.data)
+      // this.d = self.process(self.data)
+    }
+
+  },
   methods: {
+    process: function(data) {
+      let s = [];
+      let data_Dept = _.groupBy(data,'Dept');
+      let depts = _.keys(data_Dept);
+      //提取日期
+      let days = _.keys(_.groupBy(_.groupBy(data,'Dept')['第一食堂'], 'day'));
+      //插入第一个关键字后为数组1
+      days = days.splice(0,0,'Deps');
+      let data_Dept_days1 = _.groupBy(data_Dept.第一食堂,'day')
+      let data_Dept_days2 = _.groupBy(data_Dept.第二食堂,'day')
+      let data_Dept_days3 = _.groupBy(data_Dept.第三食堂,'day')
+      let data_Dept_days4 = _.groupBy(data_Dept.第四食堂,'day')
+      let data_Dept_days5 = _.groupBy(data_Dept.第五食堂,'day')
+      let data_Dept_days6 = _.groupBy(data_Dept.好利来食品店,'day')
+      let data_Dept_days7 = _.groupBy(data_Dept.红太阳超市,'day')
+
+    },
     drawGraph(el) {
       // Graph 2
       let myChart = echarts.init(el);

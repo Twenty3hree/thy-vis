@@ -10,7 +10,8 @@ export default {
   name: "Graph3",
   props: {
     data: "",
-    week: ""
+    week: "",
+    dept: ""
   },
   data() {
     return {
@@ -30,20 +31,19 @@ export default {
   },
   methods: {
     drawGraph(el) {
+      const self = this
       // Graph 3
       let myChart = echarts.init(el);
       let week = this.week
       // 指定图表的配置项和数据
-      app.title = '笛卡尔坐标系上的热力图';
-
-      var times = ['周一晨', '周一午', '周一晚', 
-                   '周二晨', '周二午', '周二晚',
-                   '周三晨', '周三午', '周三晚',
-                   '周四晨', '周四午', '周四晚',
-                   '周五晨', '周五午', '周五晚',
-                   '周六晨', '周六午', '周六晚',
-                   '周日晨', '周日午', '周日晚'];
-      var dept = ["第一食堂","第二食堂","第三食堂","第四食堂","第五食堂"];
+      var times = ['周一早', '周一中', '周一晚',
+                   '周二早', '周二中', '周二晚',
+                   '周三早', '周三中', '周三晚',
+                   '周四早', '周四中', '周四晚',
+                   '周五早', '周五中', '周五晚',
+                   '周六早', '周六中', '周六晚',
+                   '周日早', '周日中', '周日晚'];
+      var dept = ["一食堂","二食堂","三食堂","四食堂","五食堂"];
 
       var data = {
         'week1':[[0,0,217],[0,1,186],[0,2,135],[0,3,178],[0,4,168],[0,5,122],[0,6,166],[0,7,180],[0,8,169],[0,9,235],[0,10,203],[0,11,138],[0,12,150],[0,13,432],[0,14,270],[0,15,46],[0,16,315],[0,17,219],[0,18,28],[0,19,296],[0,20,87],[1,0,575],[1,1,412],[1,2,288],[1,3,492],[1,4,437],[1,5,285],[1,6,613],[1,7,384],[1,8,409],[1,9,592],[1,10,435],[1,11,320],[1,12,1],[1,13,194],[2,0,329],[2,1,222],[2,2,10],[2,3,321],[2,4,227],[2,5,274],[2,6,271],[2,7,13],[2,8,278],[2,9,290],[2,10,5],[2,11,228],[2,12,166],[2,13,9],[2,14,199],[2,15,165],[2,16,273],[2,17,146],[3,0,530],[3,1,369],[3,2,619],[3,3,478],[3,4,471],[3,5,508],[3,6,643],[3,7,499],[3,8,6],[3,9,174],[4,0,395],[4,1,516],[4,2,280],[4,3,403],[4,4,517],[4,5,301],[4,6,381],[4,7,530],[4,8,426],[4,9,411],[4,10,492],[4,11,326],[4,12,171]],
@@ -56,13 +56,23 @@ export default {
           return [item[1], item[0], item[2] || '-'];
       });
 
+      // 指定图表的配置项和数据
       let option = {
+        title:{
+          text:"就餐人数",
+          x:"center",
+          y: 'top',
+          textStyle: {
+            fontSize: 14,
+            color: '#747779'
+          }
+        },
           tooltip: {
               position: 'top'
           },
           animation: false,
           grid: {
-              height: '50%',
+              height: '60%',
               y: '10%'
           },
           xAxis: {
@@ -70,11 +80,21 @@ export default {
               data: times,
               splitArea: {
                   show: true
+              },
+            axisLabel:{
+              interval:0,
+              rotate:30,
+              splitLine:false,
+              textStyle:{
+                fontSize:10,
+                color:"#000"
               }
+            }
           },
           yAxis: {
               type: 'category',
               data: dept,
+              triggerEvent: true,
               splitArea: {
                   show: true
               }
@@ -83,9 +103,14 @@ export default {
               min: 0,
               max: 500,
               calculable: true,
-              orient: 'horizontal',
-              left: 'center',
-              bottom: '15%'
+              orient: 'vertical',
+              itemWidth:'5px',
+              left: 'right',
+              top:'center',
+              bottom: '15%',
+              inRange: {
+                  color: ['#C7EAFD','#6AB0B8']
+              }
           },
           series: [{
               name: 'Punch Card',
@@ -93,7 +118,8 @@ export default {
               data: data[week],
               label: {
                   normal: {
-                      show: true
+                      show: true,
+                    fontSize:8
                   }
               },
               itemStyle: {
@@ -107,75 +133,16 @@ export default {
 
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
+      myChart.on('click', function (params) {
+          // 控制台打印数据的名称
+          if(params.componentType =="yAxis")
+            self.$emit('updateDept', params.value)
+      });
     }
   },
   watch: {
     data: function(newValue, oldValue) {
       const self = this
-      // self.data = newValue
-      // _.forEach(newValue, function(object) {
-      //   let time = new Date(object.Date)
-      //   let day = time.getDate()
-      //   let timeInDay
-      //   if(time.getHours()<9)
-      //       timeInDay = '0'
-      //   else if(time.getHours()<15)
-      //       timeInDay = '1'
-      //   else if(time.getHours()<24)
-      //       timeInDay = '2'
-      //   object.day = day + timeInDay
-      //   object.expendId = object.CardNo + timeInDay + day
-      // })
-
-      // self.maleObj = {}
-      // self.femaleObj =  {}
-      // let deptData = _.groupBy(newValue,'Dept')
-      // _.forEach(deptData, function(value,key) {
-      //   self.maleObj[key] = _.countBy(_.uniqBy(value, 'expendId'),'Sex')['男']
-      //   self.femaleObj[key] = _.countBy(_.uniqBy(value, 'expendId'),'Sex')['女']
-      //   // self.maleArray.push(_.countBy(_.uniqBy(value, 'expendId'),'Sex')['男'])
-      //   // self.femaleArray.push(_.countBy(_.uniqBy(value, 'expendId'),'Sex')['女'])
-      // })
-      // self.maleArr = []
-      // self.femaleArr = []
-      // self.maleArr.push(self.maleObj['第一食堂'])
-      // self.maleArr.push(self.maleObj['第二食堂'])
-      // self.maleArr.push(self.maleObj['第三食堂'])
-      // self.maleArr.push(self.maleObj['第四食堂'])
-      // self.maleArr.push(self.maleObj['第五食堂'])
-      // self.maleArr.push(self.maleObj['好利来食品店'])
-      // self.maleArr.push(self.maleObj['红太阳超市'])
-      // self.femaleArr.push(self.femaleObj['第一食堂'])
-      // self.femaleArr.push(self.femaleObj['第二食堂'])
-      // self.femaleArr.push(self.femaleObj['第三食堂'])
-      // self.femaleArr.push(self.femaleObj['第四食堂'])
-      // self.femaleArr.push(self.femaleObj['第五食堂'])
-      // self.femaleArr.push(self.femaleObj['好利来食品店'])
-      // self.femaleArr.push(self.femaleObj['红太阳超市'])
-      
-      // self.arr = [0,0,0,0,0,0,0].map(function(value, index){
-      //   return self.maleArr[index] + self.femaleArr[index]
-      // })
-      // let m = {
-      //   '第一食堂': 0,
-      //   '第二食堂': 0,
-      //   '第三食堂': 0,
-      //   '第四食堂': 0,
-      //   '第五食堂': 0,
-      //   '好利来食品店': 0,
-      //   '红太阳超市': 0,
-      // }
-      // _.forEach(self.data,function(value) {
-      //     let str = value.Dept
-      //     m[str]+=parseInt(value['Money'])
-      // })
-      // let revenue = _.flatMap(m)
-      // self.revenue = _.map(revenue, function(value,index) {
-      //   value /= self.arr[index]
-      //   return value.toFixed(2)
-      // })
-
-      
       self.drawGraph(self.$refs.graph);
     }
   },

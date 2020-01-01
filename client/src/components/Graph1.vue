@@ -1,5 +1,5 @@
 <template>
-  <div ref="graph"></div>
+  <div id="g1" class="g1" ref="graph"></div>
 </template>
 
 <script>
@@ -18,7 +18,7 @@ export default {
       maleArr: [],
       femaleArr: [],
       arr: [],
-      revenue: [] 
+      revenue: []
     };
   },
   mounted() {
@@ -58,14 +58,6 @@ export default {
                   }
               }
           },
-          toolbox: {
-              feature: {
-                  dataView: {show: true, readOnly: false},
-                  magicType: {show: true, type: ['line', 'bar']},
-                  restore: {show: true},
-                  saveAsImage: {show: true}
-              }
-          },
           legend: {
               data:['男','女','人均消费']
           },
@@ -73,30 +65,36 @@ export default {
               {
                   type: 'category',
                   data: ['第一食堂','第二食堂','第三食堂','第四食堂','第五食堂','好利来食品店','红太阳超市'],
-                  axisPointer: {
-                      type: 'shadow'
+                  axisLabel:{
+                  interval:0,
+                  rotate:30,
+                  splitLine:false,
+                  textStyle:{
+                    fontSize:10,
+                    color:"#000"
                   }
+                }
               }
           ],
           yAxis: [
               {
                   type: 'value',
-                  name: '人次',
+                  name: '人次/人',
                   min: 0,
                   max: Math.max(...maleArr,...femaleArr) > 2000 ? 8000 : 2000,
                   interval: Math.max(...maleArr,...femaleArr) > 2000 ? 1600 : 400,
                   axisLabel: {
-                      formatter: '{value} 人'
+                      formatter: '{value}'
                   }
               },
               {
                   type: 'value',
-                  name: '人均消费',
+                  name: '人均消费/元',
                   min: 0,
                   max: 10,
                   interval: 2,
                   axisLabel: {
-                      formatter: '{value} 元'
+                      formatter: '{value}'
                   }
               }
           ],
@@ -104,24 +102,28 @@ export default {
               {
                   name:'男',
                   type:'bar',
-                  data: maleArr
+                  data: maleArr,
+                  color:'#669999'
               },
               {
                   name:'女',
                   type:'bar',
-                  data:femaleArr
+                  data:femaleArr,
+                  color:'#D87C7C'
               },
               {
                   name:'人均消费',
                   type:'line',
                   yAxisIndex: 1,
-                  data:revenue
+                  data:revenue,
+                  color:'#D53A35'
               }
           ]
       };
 
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
+      window.onresize = myChart.resize;
     }
   },
   watch: {
@@ -167,7 +169,7 @@ export default {
       self.femaleArr.push(self.femaleObj['第五食堂'])
       self.femaleArr.push(self.femaleObj['好利来食品店'])
       self.femaleArr.push(self.femaleObj['红太阳超市'])
-      
+
       self.arr = [0,0,0,0,0,0,0].map(function(value, index){
         return self.maleArr[index] + self.femaleArr[index]
       })
@@ -193,8 +195,17 @@ export default {
     }
   },
 };
+// var myChartx = echarts.init(document.getElementById('g1'));
+// $('.g1').resize(function(){
+//   myChartx.resize();
+// })
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#g1{
+    /*width: 100%;*/
+    /*height: 500px;*/
+    /*background: #00B7FF;*/
+}
 </style>
