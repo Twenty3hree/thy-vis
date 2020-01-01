@@ -7,6 +7,7 @@
       <div id="top_2">
         <div class="box" >
             <div class="topTit" >一卡通数据可视分析系统</div>
+            <div id="lineStyle"></div>
             <button @click="week='week1'" class="btn btn-outline-info btn-sm">1st week</button>
             <button @click="week='week2'" class="btn btn-outline-info btn-sm">2nd week</button>
             <button @click="week='week3'" class="btn btn-outline-info btn-sm">3rd week</button>
@@ -21,7 +22,7 @@
     </div>
     <div id="bottom">
       <div id="bottom_1">
-          <Graph2 :dept="this.dept" :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-top:1%" />
+          <Graph2 :dept="this.dept" :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-bottom:1%" />
       </div>
       <div id="bottom_2">
           <Graph3 v-on:updateDept="updateDept" :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-top:1% " />
@@ -104,10 +105,18 @@ export default {
   }
   .box{
       border: 1px solid #334B5C;
-      border-radius: 8px;
+      border-radius: 5px;
       border-top:none;
       /*background:rgba(0,0,0,0.1) ;*/
-      /*box-shadow: 2px 1px 1px #336666;*/
+      box-shadow: 2px 1px 1px #336666;
+  }
+  #lineStyle{
+      width:80%;
+      margin:0 auto;
+      border: 0;
+      height: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -160,7 +169,7 @@ export default {
 #bottom_2{
   height: 100%;
   width: 44%;
-  margin: 0 1%;
+  margin: 2% 1%;
 }
 #bottom_3{
   height: 100%;
