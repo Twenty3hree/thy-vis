@@ -17,6 +17,8 @@ export default {
       femaleObj: {},
       maleArr: [],
       femaleArr: [],
+      arr: [],
+      revenue: [] 
     };
   },
   mounted() {
@@ -44,6 +46,7 @@ export default {
       let myChart = echarts.init(el);
       let maleArr = this.maleArr
       let femaleArr = this.femaleArr
+      let revenue = this.revenue
       // 指定图表的配置项和数据
       let option = {
           tooltip: {
@@ -80,8 +83,8 @@ export default {
                   type: 'value',
                   name: '人次',
                   min: 0,
-                  max: Math.ceil(Math.max(...maleArr,...femaleArr)/100)*100,
-                  interval: Math.ceil(Math.max(...maleArr,...femaleArr)/500)*100,
+                  max: Math.max(...maleArr,...femaleArr) > 2000 ? 8000 : 2000,
+                  interval: Math.max(...maleArr,...femaleArr) > 2000 ? 1600 : 400,
                   axisLabel: {
                       formatter: '{value} 人'
                   }
@@ -90,8 +93,8 @@ export default {
                   type: 'value',
                   name: '人均消费',
                   min: 0,
-                  max: Math.ceil(25/10)*10,
-                  interval: Math.ceil(25/50)*10,
+                  max: 10,
+                  interval: 2,
                   axisLabel: {
                       formatter: '{value} 元'
                   }
@@ -112,7 +115,7 @@ export default {
                   name:'人均消费',
                   type:'line',
                   yAxisIndex: 1,
-                  data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3]
+                  data:revenue
               }
           ]
       };
@@ -165,6 +168,27 @@ export default {
       self.femaleArr.push(self.femaleObj['好利来食品店'])
       self.femaleArr.push(self.femaleObj['红太阳超市'])
       
+      self.arr = [0,0,0,0,0,0,0].map(function(value, index){
+        return self.maleArr[index] + self.femaleArr[index]
+      })
+      let m = {
+        '第一食堂': 0,
+        '第二食堂': 0,
+        '第三食堂': 0,
+        '第四食堂': 0,
+        '第五食堂': 0,
+        '好利来食品店': 0,
+        '红太阳超市': 0,
+      }
+      _.forEach(self.data,function(value) {
+          let str = value.Dept
+          m[str]+=parseInt(value['Money'])
+      })
+      let revenue = _.flatMap(m)
+      self.revenue = _.map(revenue, function(value,index) {
+        value /= self.arr[index]
+        return value.toFixed(2)
+      })
       self.drawGraph(self.$refs.graph);
     }
     
