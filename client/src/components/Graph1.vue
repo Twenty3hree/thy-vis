@@ -49,6 +49,15 @@ export default {
       let revenue = this.revenue
       // 指定图表的配置项和数据
       let option = {
+        title:{
+          text:"男女消费统计",
+          x:"center",
+          y: 'top',
+          textStyle: {
+            fontSize: 14,
+            color: '#747779'
+          }
+        },
           tooltip: {
               trigger: 'axis',
               axisPointer: {
@@ -59,7 +68,9 @@ export default {
               }
           },
           legend: {
-              data:['男','女','人均消费']
+              data:['男','女','人均消费'],
+              x: "center",
+              top: 25,
           },
           xAxis: [
               {
@@ -79,13 +90,16 @@ export default {
           yAxis: [
               {
                   type: 'value',
-                  name: '人次/人',
+                  name: '流量/人',
                   min: 0,
                   max: Math.max(...maleArr,...femaleArr) > 2000 ? 8000 : 2000,
                   interval: Math.max(...maleArr,...femaleArr) > 2000 ? 1600 : 400,
                   axisLabel: {
                       formatter: '{value}'
-                  }
+                  },
+                axisTick:{
+                  show:false
+                }
               },
               {
                   type: 'value',
@@ -95,7 +109,10 @@ export default {
                   interval: 2,
                   axisLabel: {
                       formatter: '{value}'
-                  }
+                  },
+                axisTick:{
+                  show:false
+                }
               }
           ],
           series: [
@@ -123,7 +140,9 @@ export default {
 
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
-      window.onresize = myChart.resize;
+      window.onresize = function(){
+        myChart.resize();
+      }
     }
   },
   watch: {
