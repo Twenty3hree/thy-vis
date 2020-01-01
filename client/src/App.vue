@@ -15,7 +15,9 @@
         </div>
           <Graph4 :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-top:1%" />
       </div>
-      <div id="top_3"></div>
+      <div id="top_3">
+        <Graph5 :data="this.data" :week="this.week" style="width: 100%;height:22em;" />
+      </div>
     </div>
     <div id="bottom">
       <div id="bottom_1">
@@ -24,7 +26,9 @@
       <div id="bottom_2">
           <Graph3 v-on:updateDept="updateDept" :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-top:1% " />
       </div>
-      <div id="bottom_3"></div>
+      <div id="bottom_3">
+          <Graph6 :dept="this.dept" :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-top:1%" />
+      </div>
     </div>
     <br />
     <!-- <Graph1 :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" /> -->
@@ -42,6 +46,8 @@ import Graph1 from "./components/Graph1";
 import Graph2 from "./components/Graph2";
 import Graph3 from "./components/Graph3";
 import Graph4 from "./components/Graph4";
+import Graph5 from "./components/Graph5";
+import Graph6 from "./components/Graph6";
 import $ from 'jquery'
 export default {
   name: "app",
@@ -57,7 +63,9 @@ export default {
     Graph1,
     Graph2,
     Graph3,
-    Graph4
+    Graph4,
+    Graph5,
+    Graph6
   },
   methods: {
     updateDept: function(dept) {
