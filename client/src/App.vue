@@ -11,7 +11,7 @@
           <button @click="week='week3'">3rd week</button>
           <button @click="week='week4'">4th week</button>
           <button @click="week='week5'">5th week</button>
-        <Graph3 :data="this.data" :week="this.week" style="width: 100%;height:300px;margin-top:1% " />
+        <Graph3 v-on:updateDept="updateDept" :data="this.data" :week="this.week" style="width: 100%;height:300px;margin-top:1% " />
       </div>
       <div id="top_3"></div>
     </div>
@@ -24,8 +24,6 @@
 
 <!--    <img alt="Vue logo" src="./assets/logo.png" style="height:20px;" />-->
     <br />
-    <Graph1 :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" />
-    <Graph3 v-on:updateDept="updateDept" :dept="this.dept" :data="this.data" :week="this.week" style="width: 50%;height:300px;float:left" />
     <Graph2 :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" />
     <Graph4 :data="this.data" :week="this.week" style="width: 50%;height:500px;float:left" />
   </div>
@@ -124,7 +122,7 @@ export default {
 }
 button {
     margin: 1% 3% 1% 3%;
-    float: left;
+    /* float: left; */
     /*padding: 1% 5%;*/
 }
 </style>
