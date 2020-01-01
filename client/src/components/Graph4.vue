@@ -98,7 +98,25 @@ export default {
         ]
       }
       let option = {
-          legend: {},
+        title:{
+          text:"各食堂日营业额",
+          x:"center",
+          y: 'top',
+          textStyle: {
+            fontSize: 14,
+            color: '#747779'
+          }
+        },
+        color:['#4EA397','#B6A2DE','#5AB1EF','#FFB980','#D87A80',
+          "#BEDDB4","#A0D5DD","#B5D1DC","#7DA9CC","#4D7CA8","#1D5584","#003D74"],
+          legend: {
+            itemGap:5,
+            itemWidth:5,
+            x: "center",
+            top: 25,
+            bottom: 20,
+            data:["第一食堂","第二食堂","第三食堂","第四食堂","第五食堂",'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
+          },
           tooltip: {},
           dataset: {
               source: source[week]
@@ -135,6 +153,9 @@ export default {
 
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
+      window.onresize = function(){
+        myChart.resize();
+      }
     }
   },
   watch: {

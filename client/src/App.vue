@@ -13,23 +13,24 @@
             <button @click="week='week4'" class="btn btn-outline-info btn-sm">4th week</button>
             <button @click="week='week5'" class="btn btn-outline-info btn-sm">5th week</button>
         </div>
-        <Graph3 v-on:updateDept="updateDept" :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-top:1% " />
+          <Graph4 :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-top:1%" />
       </div>
       <div id="top_3"></div>
     </div>
-<!--    <div id="bottom">-->
-<!--      <div id="bottom_1"></div>-->
-<!--      <div id="bottom_2"></div>-->
-<!--      <div id="bottom_3"></div>-->
-<!--      <div id="bottom_4"></div>-->
-<!--    </div>-->
-
-<!--    <img alt="Vue logo" src="./assets/logo.png" style="height:20px;" />-->
+    <div id="bottom">
+      <div id="bottom_1">
+          <Graph2 :dept="this.dept" :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-top:1%" />
+      </div>
+      <div id="bottom_2">
+          <Graph3 v-on:updateDept="updateDept" :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-top:1% " />
+      </div>
+      <div id="bottom_3"></div>
+    </div>
     <br />
     <!-- <Graph1 :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" /> -->
     <!-- <Graph3 v-on:updateDept="updateDept" :dept="this.dept" :data="this.data" :week="this.week" style="width: 50%;height:300px;float:left" /> -->
-    <Graph2 :dept="this.dept" :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" />
-    <Graph4 :data="this.data" :week="this.week" style="width: 50%;height:500px;float:left" />
+    <!--<Graph2 :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" />-->
+    <!--<Graph4 :data="this.data" :week="this.week" style="width: 50%;height:500px;float:left" />-->
   </div>
 </template>
 
@@ -138,9 +139,26 @@ export default {
   height: 100%;
   width: 28%;
 }
+#bottom{
+  height: 60%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+#bottom_1{
+  height:100%;
+  width: 28%;
+}
+#bottom_2{
+  height: 100%;
+  width: 44%;
+  margin: 0 1%;
+}
+#bottom_3{
+  height: 100%;
+  width: 28%;
+}
 button {
     margin: 1% 3% 1% 3%;
-    /*width: 20%;*/
-    /*height: 20px;*/
 }
 </style>
