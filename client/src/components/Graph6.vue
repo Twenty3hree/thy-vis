@@ -55,11 +55,15 @@ export default {
       }
       // 指定图表的配置项和数据
       let option = {
-          title : {
-              text: '南丁格尔玫瑰图',
-              subtext: '纯属虚构',
-              x:'center'
-          },
+        title:{
+          text:dept +"各专业就餐比例",
+          x:"center",
+          y: 'top',
+          textStyle: {
+            fontSize: 14,
+            color: '#747779'
+          }
+        },
           tooltip : {
               trigger: 'item',
               formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -69,23 +73,10 @@ export default {
               y : 'bottom',
               data:['rose1','rose2','rose3','rose4','rose5','rose6','rose7','rose8']
           },
-          toolbox: {
-              show : true,
-              feature : {
-                  mark : {show: true},
-                  dataView : {show: true, readOnly: false},
-                  magicType : {
-                      show: true,
-                      type: ['pie', 'funnel']
-                  },
-                  restore : {show: true},
-                  saveAsImage : {show: true}
-              }
-          },
           calculable : true,
           series : [
               {
-                  name:'半径模式',
+                  name:"",
                   type:'pie',
                   radius : [20, 110],
                   center : ['50%', '50%'],
