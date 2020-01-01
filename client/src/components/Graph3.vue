@@ -105,7 +105,7 @@ export default {
           visualMap: {
               min: 0,
               max: 500,
-              calculable: true,
+              // calculable: true,
               orient: 'vertical',
               itemWidth:'5px',
               left: 'right',

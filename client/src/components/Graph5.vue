@@ -40,10 +40,14 @@ export default {
 
       // 指定图表的配置项和数据
       let option = {
-        title: {
-            text: 'Dispersion of house price based on the area',
-            left: 'center',
-            top: 0
+        title:{
+          text:"学生消费情况",
+          x:"center",
+          y: 10,
+          textStyle: {
+            fontSize: 14,
+            color: '#747779'
+          }
         },
         visualMap: {
             min: 0,
@@ -52,8 +56,12 @@ export default {
             orient: 'vertical',
             right: 10,
             top: 'center',
-            text: ['HIGH', 'LOW'],
-            calculable: true,
+            text: ['High', 'Low'],
+            // calculable: true,
+          itemWidth:'5px',
+          left: 'right',
+          top:'center',
+          bottom: '15%',
             inRange: {
                 color: ['#f2c31a', '#24b7f2']
             }
@@ -79,42 +87,6 @@ export default {
             name: 'price-area',
             type: 'scatter',
             symbolSize: 5,
-            // itemStyle: {
-            //     normal: {
-            //         borderWidth: 0.2,
-            //         borderColor: '#fff'
-            //     }
-            // },
-
-            markLine: {
-            data: [
-                [
-                  {
-                    // name:'平均消费3.3¥',
-                    itemStyle:{
-                      normal:{
-                        show:true,
-                        color:'#4c5336'
-                      }
-                    },
-                    coord:[0,0]
-                  },
-                  {
-                    coord:[300,990]
-                  }
-                ],
-                [
-                  {
-                    // name:'平均消费2.0¥',
-                    
-                    coord:[0,0]
-                  },
-                  {
-                    coord:[300,600]
-                  }
-                ],
-              ]
-            },
             data: data
         }]
       };

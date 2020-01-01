@@ -6,7 +6,7 @@
       </div>
       <div id="top_2">
         <div class="box" >
-            <div class="topTit" >一卡通数据可视分析系统</div>
+            <div class="topTit" >一卡通数据可视化系统</div>
             <div id="lineStyle"></div>
             <button @click="week='week1'" class="btn btn-outline-info btn-sm">1st week</button>
             <button @click="week='week2'" class="btn btn-outline-info btn-sm">2nd week</button>
@@ -17,7 +17,7 @@
           <Graph4 :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-top:1%" />
       </div>
       <div id="top_3">
-        <Graph5 :data="this.data" :week="this.week" style="width: 100%;height:22em;" />
+        <Graph5 :data="this.data" :week="this.week" style="width: 100%;height:22em;margin-top:4%" />
       </div>
     </div>
     <div id="bottom">
@@ -54,7 +54,7 @@ export default {
   name: "app",
   data() {
     return {
-      week: 'week5',
+      week: 'week1',
       data: '',
       stuData: '',
       dept: '一食堂',
@@ -101,7 +101,8 @@ export default {
     padding: 0px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     overflow: hidden;
-    background: aliceblue;
+    /*background: aliceblue;*/
+      background-image: linear-gradient(to top, aliceblue,#B7DBFF);
   }
   .box{
       border: 1px solid #334B5C;
