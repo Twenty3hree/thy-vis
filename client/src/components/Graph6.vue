@@ -86,15 +86,7 @@ export default {
                           show: false
                       },
                       emphasis: {
-                          show: true
-                      }
-                  },
-                  lableLine: {
-                      normal: {
                           show: false
-                      },
-                      emphasis: {
-                          show: true
                       }
                   },
                   data:data[week][dept]
