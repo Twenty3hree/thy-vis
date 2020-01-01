@@ -5,15 +5,15 @@
         <Graph1 :data="this.data" :week="this.week" style="width: 100%;height:22em;" />
       </div>
       <div id="top_2">
-          <div class="box" >
-              <div class="topTit" >一卡通数据可视分析系统</div>
-              <button @click="week='week1'" class="btn btn-outline-info btn-sm">1st week</button>
-              <button @click="week='week2'" class="btn btn-outline-info btn-sm">2nd week</button>
-              <button @click="week='week3'" class="btn btn-outline-info btn-sm">3rd week</button>
-              <button @click="week='week4'" class="btn btn-outline-info btn-sm">4th week</button>
-              <button @click="week='week5'" class="btn btn-outline-info btn-sm">5th week</button>
-          </div>
-        <Graph3 :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-top:1% " />
+        <div class="box" >
+            <div class="topTit" >一卡通数据可视分析系统</div>
+            <button @click="week='week1'" class="btn btn-outline-info btn-sm">1st week</button>
+            <button @click="week='week2'" class="btn btn-outline-info btn-sm">2nd week</button>
+            <button @click="week='week3'" class="btn btn-outline-info btn-sm">3rd week</button>
+            <button @click="week='week4'" class="btn btn-outline-info btn-sm">4th week</button>
+            <button @click="week='week5'" class="btn btn-outline-info btn-sm">5th week</button>
+        </div>
+        <Graph3 v-on:updateDept="updateDept" :data="this.data" :week="this.week" style="width: 100%;height:19em;margin-top:1% " />
       </div>
       <div id="top_3"></div>
     </div>
@@ -26,8 +26,8 @@
 
 <!--    <img alt="Vue logo" src="./assets/logo.png" style="height:20px;" />-->
     <br />
-    <Graph1 :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" />
-    <Graph3 v-on:updateDept="updateDept" :dept="this.dept" :data="this.data" :week="this.week" style="width: 50%;height:300px;float:left" />
+    <!-- <Graph1 :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" /> -->
+    <!-- <Graph3 v-on:updateDept="updateDept" :dept="this.dept" :data="this.data" :week="this.week" style="width: 50%;height:300px;float:left" /> -->
     <Graph2 :data="this.data" :week="this.week" style="width: 33%;height:300px;float:left" />
     <Graph4 :data="this.data" :week="this.week" style="width: 50%;height:500px;float:left" />
   </div>
