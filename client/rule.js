@@ -112,3 +112,28 @@ for(i=0;i<10;i++){
         array[i] = array2[(i-1)/2]
 }
 array
+
+// Graph6
+str = ['','','','','']
+a = _.countBy(_.groupBy(_.uniqBy(data = $vm0.data,'dayId'), 'd')[1],'Major')
+for(i=0;i<Object.keys(a).length;i++){
+    str[0] += '{name:\''+ Object.keys(a)[i] + '\',value:' + Object.values(a)[i] + '},'
+}
+a = _.countBy(_.groupBy(_.uniqBy(data = $vm0.data,'dayId'), 'd')[2],'Major')
+for(i=0;i<Object.keys(a).length;i++){
+    str[1] += '{name:\''+ Object.keys(a)[i] + '\',value:' + Object.values(a)[i] + '},'
+}
+a = _.countBy(_.groupBy(_.uniqBy(data = $vm0.data,'dayId'), 'd')[3],'Major')
+for(i=0;i<Object.keys(a).length;i++){
+    str[2] += '{name:\''+ Object.keys(a)[i] + '\',value:' + Object.values(a)[i] + '},'
+}
+a = _.countBy(_.groupBy(_.uniqBy(data = $vm0.data,'dayId'), 'd')[4],'Major')
+for(i=0;i<Object.keys(a).length;i++){
+    str[3] += '{name:\''+ Object.keys(a)[i] + '\',value:' + Object.values(a)[i] + '},'
+}
+a = _.countBy(_.groupBy(_.uniqBy(data = $vm0.data,'dayId'), 'd')[5],'Major')
+for(i=0;i<Object.keys(a).length;i++){
+    str[4] += '{name:\''+ Object.keys(a)[i] + '\',value:' + Object.values(a)[i] + '},'
+}
+
+`{'一食堂':[${str[0]}],'二食堂':[${str[1]}],'三食堂':[${str[2]}],'四食堂':[${str[3]}],'五食堂':[${str[4]}],}`
